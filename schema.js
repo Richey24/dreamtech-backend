@@ -3,43 +3,19 @@ const mongoose = require("mongoose");
 const User = mongoose.model(
   "User",
   new mongoose.Schema({
-    username: {
+    firstname: {
       type: String,
       required: true,
     },
-    password: {
+    lastname: {
       type: String,
-      required: false,
-    },
-    role: {
-      type: String,
-      required: true,
-    },
-    bactive: {
-      type: Boolean,
-      required: false,
-    },
-    cusname: {
-      type: String,
-      required: false,
-    },
-    address: {
-      type: String,
-      required: false,
-    },
-    city: {
-      type: String,
-      required: false,
-    },
-    state: {
-      type: String,
-      required: false,
-    },
-    zip: {
-      type: Number,
       required: false,
     },
     email: {
+      type: String,
+      required: true,
+    },
+    gender: {
       type: String,
       required: false,
     },
@@ -51,79 +27,30 @@ const User = mongoose.model(
   "user"
 );
 
-const Room = mongoose.model(
-  "Room",
+const Questions = mongoose.model(
+  "questions",
   new mongoose.Schema({
-    isAvailable: {
+    question: {
+      type: String,
+      required: true,
+    },
+    answer: {
+      type: String,
+      required: true,
+    },
+    isCorrect: {
       type: Boolean,
-      required: true,
-    },
-    roomNum: {
-      type: Number,
-      required: true,
-    },
-    price: {
-      type: Number,
-      required: true,
-    },
-    category: {
-      type: String,
       required: false,
     },
-    cusId: {
-      type: String,
-      required: false,
-    },
-    bkId: {
-      type: String,
+    userEmail: {
+      type: Boolean,
       required: false,
     },
   }),
-  "room"
-);
-
-const Booking = mongoose.model(
-  "Booking",
-  new mongoose.Schema({
-    checkInDate: {
-      type: Date,
-      required: true,
-    },
-    checkOutDate: {
-      type: Date,
-      required: true,
-    },
-    roomNum: {
-      type: Number,
-      required: true,
-    },
-    cusId: {
-      type: String,
-      required: true,
-    },
-  }),
-  "booking"
-);
-
-const Services = mongoose.model(
-  "Service",
-  new mongoose.Schema({
-    bookings: { type: mongoose.Schema.Types.ObjectId, ref: "Booking" },
-    status: {
-      type: String,
-      required: true,
-    },
-    description: {
-      type: String,
-      required: true,
-    },
-  }),
-  "service"
+  "questions"
 );
 
 module.exports = {
   User,
-  Room,
-  Booking,
-  Services
+  Questions,
 };
