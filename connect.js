@@ -6,12 +6,12 @@ const createUserController = require("./controller/userController/createUser");
 const saveQuestionController = require('./controller/questionsController/create');
 const getAllQuestionsController = require('./controller/questionsController/getAll')
 const editOneRoomController = require('./controller/questionsController/editOne')
-
+const cors = require('cors');
 const app = express();
 
 //dotenv
 dotenv.config({ path: "./.env" });
-
+app.use(cors())
 app.use(express.json());
 const port = process.env.PORT || 5000;
 
