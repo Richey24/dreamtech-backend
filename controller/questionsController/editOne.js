@@ -1,12 +1,12 @@
 const { Questions } = require("../../schema");
 
-const editOneRoomController = async (req, res) => {
+const editOneQuestionController = async (req, res) => {
   // if (req.user) {
   const { id } = req.params;
   try {
     let questions = await Questions.findOneAndUpdate(
       id,
-      {...req.body},
+      { ...req.body },
       { new: true }
     );
     res.status(200).json({ status: true, message: "Update!", questions });
@@ -18,4 +18,4 @@ const editOneRoomController = async (req, res) => {
   // }
 };
 
-module.exports = editOneRoomController;
+module.exports = editOneQuestionController;
