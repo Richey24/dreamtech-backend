@@ -12,7 +12,7 @@ const mailController = async (req, res) => {
       secure: true,
       auth: {
         user: "uahomorejoice@gmail.com",
-        pass: "qjoaflxrxajkixvc",
+        pass: "",
       },
     });
 
