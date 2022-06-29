@@ -1,8 +1,8 @@
 const { User } = require("../../schema");
 
 const createUserController = async (req, res) => {
-  const { firstname, lastname, email, gender, phone } = req.body;
-  console.log(req.body)
+  const { firstname, email } = req.body;
+  console.log(req.body);
   const check = await User.findOne({ email });
   if (check) {
     res.status(201).json({ message: "user with this email already exists" });

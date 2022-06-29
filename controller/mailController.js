@@ -1,23 +1,48 @@
 const nodemailer = require("nodemailer");
 
 const mailController = async (req, res) => {
-  let { firstName, lastName, email, phoneNumber, gender, course } = req.body;
+  //Destructuring User Details
+  let { firstName, lastName, email, phoneNumber, gender, course, message } =
+    req.body;
   try {
+    //Configuring Mail Settings
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
       auth: {
         user: "uahomorejoice@gmail.com",
-        pass: "",
+        pass: "qjoaflxrxajkixvc",
       },
     });
 
-    let info = await transporter.sendMail({
-      from: '"Dreamtech Academy" <info@dreamtechlab.com>',
-      to: "uahomorejoice@gmail.com, uahomorejoice@gmail.com",
-      subject: "New Student Registration",
-      html: `
+    if (message) {
+      await transporter.sendMail({
+        //Sending Contact Mail
+        from: '"Dreamtech Academy" <info@dreamtechlab.com>',
+        to: "uahomorejoice@gmail.com, uahomorejoice@gmail.com",
+        subject: "New Contact Message",
+        html: `
+        <h4>New Contact Message</h4>
+        Firstname - <b>${firstName}</b>
+        <br>
+        Lastname - <b>${lastName}</b>
+        <br>
+        Email - <b>${email}</b>
+        <br>
+        Phone - <b>${phoneNumber}</b>
+        <br>
+        Message - <b>${message}</b>
+        <br>
+      `,
+      });
+    } else {
+      await transporter.sendMail({
+        //Sending Register Mail
+        from: '"Dreamtech Academy" <info@dreamtechlab.com>',
+        to: "uahomorejoice@gmail.com, uahomorejoice@gmail.com",
+        subject: "New Student Registration",
+        html: `
         <h4>New Student Registration</h4>
         Firstname - <b>${firstName}</b>
         <br>
@@ -31,10 +56,12 @@ const mailController = async (req, res) => {
         <br>
         Course - <b>${course}</b>
       `,
-    });
-    console.log("Message sent: %s", info.messageId);
+      });
+    }
+    res.status(200).json("success");
   } catch (error) {
     console.log(error);
+    res.status(500).json("Error");
   }
 };
 module.exports = mailController;
