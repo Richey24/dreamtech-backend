@@ -2,8 +2,15 @@ const nodemailer = require("nodemailer");
 
 const mailController = async (req, res) => {
   //Destructuring User Details
-  let { firstName, lastName, email, phoneNumber, gender, course, message } =
-    req.body;
+  let {
+    firstName,
+    lastName,
+    email,
+    phone: phoneNumber,
+    gender,
+    course,
+    message
+  } = req.body;
   try {
     //Configuring Mail Settings
     let transporter = nodemailer.createTransport({
@@ -86,7 +93,7 @@ const mailController = async (req, res) => {
       `,
       });
     }
-    res.status(200).json("success");
+    res.status(200).json({ message: "success", });
   } catch (error) {
     console.log(error);
     res.status(500).json("Error");

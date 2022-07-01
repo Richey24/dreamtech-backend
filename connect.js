@@ -39,7 +39,7 @@ app.post("/send/mail", mailController);
 const userRouter = express.Router();
 userRouter
   .get("/get/all", getAllUserController)
-  .post("/register", createUserController);
+  .post("/register", createUserController,mailController);
 
 const questionsRouter = express.Router();
 questionsRouter

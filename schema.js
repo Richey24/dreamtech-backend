@@ -23,6 +23,10 @@ const User = mongoose.model(
       type: String,
       required: false,
     },
+    course: {
+      type: String,
+      required: false,
+    },
   }),
   "user"
 );
