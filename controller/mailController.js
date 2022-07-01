@@ -9,7 +9,7 @@ const mailController = async (req, res) => {
     phone: phoneNumber,
     gender,
     course,
-    message
+    message,
   } = req.body;
   try {
     //Configuring Mail Settings
@@ -24,7 +24,7 @@ const mailController = async (req, res) => {
       await transporter.sendMail({
         //Sending Contact Mail
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
-        to: "uahomorejoice@gmail.com, uahomorejoice@gmail.com",
+        to: "info@dreamtechlabs.net, info@dreamtechlabs.net",
         subject: "New Contact Message",
         html: `
         <h4>New Contact Message</h4>
@@ -61,7 +61,7 @@ const mailController = async (req, res) => {
       `,
       });
       await transporter.sendMail({
-        //Sending Contact Mail
+        //Sending Confirmation Mail To User
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
         to: `${email}, ${email}`,
         subject: "Successful Registration",
@@ -93,7 +93,7 @@ const mailController = async (req, res) => {
       `,
       });
     }
-    res.status(200).json({ message: "success", });
+    res.status(200).json({ message: "success" });
   } catch (error) {
     console.log(error);
     res.status(500).json("Error");
