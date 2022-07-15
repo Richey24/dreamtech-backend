@@ -49,7 +49,7 @@ const mailController = async (req, res) => {
       });
     } else if (score) {
       await transporter.sendMail({
-        //Sending Quiz Result Mail
+        //Sending Quiz Result Mail To Admin
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
         to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
         subject: "New Student Quiz Result",
@@ -68,6 +68,36 @@ const mailController = async (req, res) => {
         <br>
         <i>Alone we might go faster</i>
         <i>together we go farther!</i>
+        <br>
+        <p>Copyright &copy; 2022 Dreamtech Academy</p>
+        </center>
+      `,
+      });
+
+      await transporter.sendMail({
+        //Sending Quiz Result Mail To User
+        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
+        subject: "Your Quiz Result",
+        html: `
+        <center>
+        <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
+        </center>
+        <center>
+        <p>Congrats, You have successfully completed the Dreamtech Academy quiz,</p> 
+        <p>Based on your result you have qualified for the ${
+          parseInt((score / total) * 100) >= 70
+            ? "Full-Stack Web Development Coding Bootcamp 2"
+            : "Full-Stack Web Development Coding Bootcamp 1"
+        }</p>
+        <br>
+        <p>Dreamtech lab team 🚀</p>
+        <br>
+        <i>Alone we might go faster</i>
+        <i>together we go farther!</i>
+        <br>
+        <p>Have a question about Dreamtech Academy training?</p>
+        <a href="https://calendly.com/dreamtechlabsacademy/30min">Schedule a Meeting</a>
         <br>
         <p>Copyright &copy; 2022 Dreamtech Academy</p>
         </center>
