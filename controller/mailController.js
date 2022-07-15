@@ -1,4 +1,7 @@
 const nodemailer = require("nodemailer");
+const dotenv = require("dotenv");
+
+dotenv.config({ path: "./.env" });
 
 const mailController = async (req, res) => {
   //Destructuring User Details
@@ -10,6 +13,11 @@ const mailController = async (req, res) => {
     gender,
     course,
     message,
+    name,
+    score,
+    total,
+    phone,
+    quizCourse,
   } = req.body;
   try {
     //Configuring Mail Settings
@@ -17,7 +25,7 @@ const mailController = async (req, res) => {
       service: "Outlook365",
       auth: {
         user: "info@dreamtechlabs.net",
-        pass: "",
+        pass: process.env.PASS,
       },
     });
     if (message) {
@@ -37,6 +45,32 @@ const mailController = async (req, res) => {
         Phone - <b>${phoneNumber}</b>
         <br>
         Message - <b>${message}</b>
+      `,
+      });
+    } else if (score) {
+      await transporter.sendMail({
+        //Sending Quiz Result Mail
+        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
+        subject: "New Student Quiz Result",
+        html: `
+        <center>
+        <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
+        </center>
+        <center>
+        <p>${name} have successfully completing the quiz for the Dreamtech Academy ${quizCourse},</p> 
+        <p>${name} answered ${score}/${total} questions correctly</p>   
+        <p>Other Student Information</p>
+        <p>${email}</p>
+        <p>${phone}</p>
+        <br>
+        <p>Dreamtech lab team 🚀</p>
+        <br>
+        <i>Alone we might go faster</i>
+        <i>together we go farther!</i>
+        <br>
+        <p>Copyright &copy; 2022 Dreamtech Academy</p>
+        </center>
       `,
       });
     } else {
@@ -62,7 +96,7 @@ const mailController = async (req, res) => {
       });
       await transporter.sendMail({
         //Sending Confirmation Mail To User
-        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
         to: `${email}, ${email}`,
         subject: "Successful Registration",
         html: `
@@ -71,24 +105,24 @@ const mailController = async (req, res) => {
         </center>
         <b>Hi ${firstName}</b>
         <center>
-        <p>Congrats, you have successfully applied for the Dreamtech Labs Academy ${course},</p> 
+        <p>Congrats, you have successfully applied for the Dreamtech Academy ${course},</p> 
         <p>And over the course of this bootcamp you will learn the fundamental and core concepts needed to become a Full Stack Developer</p>   
         <p>Our team of experienced Web technologists stand ready to work personally with you to ensure you have a great experience in the course</p>
         <p>We will let you know when your application have been completed.</p>
         <p>Thanks!</p>
-        <p>Dreamtech lab team 🚀</p>
+        <p>Dreamtech team 🚀</p>
         <br>
         </center>
         <i>Alone we might go faster</i>
         <i>together we go farther!</i>
         <br>
         <center>
-        <p>Have a question about Dreamtech Labs Academy training?</p>
+        <p>Have a question about Dreamtech Academy training?</p>
         <a href="https://calendly.com/dreamtechlabsacademy/30min">Schedule a Meeting</a>
         </center>
         <br>
         <center>
-        <p>Copyright &copy; 2022 Dreamtech Labs Academy</p>
+        <p>Copyright &copy; 2022 Dreamtech Academy</p>
         </center>
       `,
       });
