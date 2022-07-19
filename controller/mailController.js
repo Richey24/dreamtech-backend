@@ -30,7 +30,7 @@ const mailController = async (req, res) => {
     });
     if (message) {
       await transporter.sendMail({
-        //Sending Contact Mail
+        //Sending Contact Mail To Admin
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
         to: "info@dreamtechlabs.net, info@dreamtechlabs.net",
         subject: "New Contact Message",
@@ -58,7 +58,7 @@ const mailController = async (req, res) => {
         <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>${name} have successfully completing the quiz for the Dreamtech Academy ${quizCourse},</p> 
+        <p>${name} have successfully completed the quiz for the Dreamtech Academy ${quizCourse},</p> 
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
         <p>${email}</p>
@@ -105,7 +105,7 @@ const mailController = async (req, res) => {
       });
     } else {
       await transporter.sendMail({
-        //Sending Register Mail
+        //Sending Register Mail To Admin
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
         to: "info@dreamtechlabs.net, info@dreamtechlabs.net",
         subject: "New Student Registration",
@@ -160,7 +160,7 @@ const mailController = async (req, res) => {
     res.status(200).json({ message: "success" });
   } catch (error) {
     console.log(error);
-    res.status(500).json("Error");
+    res.status(500).json(error);
   }
 };
 module.exports = mailController;

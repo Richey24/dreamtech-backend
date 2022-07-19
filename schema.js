@@ -15,6 +15,10 @@ const User = mongoose.model(
       type: String,
       required: true,
     },
+    password: {
+      type: String,
+      required: true,
+    },
     gender: {
       type: String,
       required: false,
@@ -27,34 +31,14 @@ const User = mongoose.model(
       type: String,
       required: false,
     },
+    testDate: {
+      type: Number,
+      required: false,
+    },
   }),
   "user"
 );
 
-const Questions = mongoose.model(
-  "questions",
-  new mongoose.Schema({
-    question: {
-      type: String,
-      required: true,
-    },
-    answer: {
-      type: String,
-      required: true,
-    },
-    isCorrect: {
-      type: Boolean,
-      required: false,
-    },
-    userEmail: {
-      type: Boolean,
-      required: false,
-    },
-  }),
-  "questions"
-);
-
 module.exports = {
   User,
-  Questions,
 };
