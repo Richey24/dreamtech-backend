@@ -19,14 +19,6 @@ const User = mongoose.model(
       type: String,
       required: true,
     },
-    gender: {
-      type: String,
-      required: false,
-    },
-    phone: {
-      type: String,
-      required: false,
-    },
     course: {
       type: String,
       required: false,
