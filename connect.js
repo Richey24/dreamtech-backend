@@ -10,7 +10,7 @@ const testDate = require("./controller/userController/testDate");
 const app = express();
 
 //dotenv
-dotenv.config({ path: "./.env" });
+dotenv.config({ path: "./environ/.env" });
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 5000;
