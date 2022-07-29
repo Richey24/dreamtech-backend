@@ -8,7 +8,6 @@ const mailController = require("./controller/mailController");
 const loginUser = require("./controller/userController/loginUser");
 const testDate = require("./controller/userController/testDate");
 const app = express();
-
 //dotenv
 dotenv.config({ path: "./environ/.env" });
 app.use(cors());
