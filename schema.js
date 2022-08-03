@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const User = mongoose.model(
-  "User",
+  "Student",
   new mongoose.Schema({
     firstname: {
       type: String,
@@ -28,7 +28,7 @@ const User = mongoose.model(
       required: false,
     },
   }),
-  "user"
+  "student"
 );
 
 module.exports = {
