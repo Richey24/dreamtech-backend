@@ -62,7 +62,6 @@ const mailController = async (req, res) => {
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
         <p>${email}</p>
-        <p>${phone}</p>
         <br>
         <p>Dreamtech lab team 🚀</p>
         <br>
