@@ -59,14 +59,14 @@ const mailController = async (req, res) => {
       await transporter.sendMail({
         //Sending Quiz Result Mail To Admin
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
-        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
+        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
         subject: "New Student Quiz Result",
         html: `
         <center>
         <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>${name} have successfully completed the quiz for the Dreamtech Academy ,</p> 
+        <p>${name} have successfully completed the quiz for the Dreamtech Academy ${quizCourse},</p> 
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
         <p>Email: ${email}</p>
