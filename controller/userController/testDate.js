@@ -2,7 +2,10 @@ const { User } = require("../../schema");
 
 const testDate = async (req, res) => {
   const { email } = req.body;
-  if (!email) return;
+  if (!email) {
+    res.status(401).json({ message: "No email" });
+    return;
+  }
   try {
     const testDate = new Date().getTime() + 7 * 24 * 60 * 60 * 1000;
     const user = await User.findOneAndUpdate(

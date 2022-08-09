@@ -9,16 +9,24 @@ const mailController = async (req, res) => {
     firstName,
     lastName,
     email,
-    phone: phoneNumber,
     gender,
     course,
     message,
     name,
     score,
     total,
-    phone,
+    phoneNumber,
     quizCourse,
+    htmlScore,
+    cssScore,
+    jsScore,
   } = req.body;
+
+  if (!email) {
+    res.status(401).json({ message: "No email" });
+    return;
+  }
+
   try {
     //Configuring Mail Settings
     let transporter = nodemailer.createTransport({
@@ -51,17 +59,27 @@ const mailController = async (req, res) => {
       await transporter.sendMail({
         //Sending Quiz Result Mail To Admin
         from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
-        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
+        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
         subject: "New Student Quiz Result",
         html: `
         <center>
         <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>${name} have successfully completed the quiz for the Dreamtech Academy ${quizCourse},</p> 
+        <p>${name} have successfully completed the quiz for the Dreamtech Academy ,</p> 
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
-        <p>${email}</p>
+        <p>Email: ${email}</p>
+        <p>HTML Score: ${htmlScore}/15</p>
+        <p>Css Score: ${cssScore}/6</p>
+        <p>Javascript Score: ${jsScore}/15</p>
+         <p>Recommended course: ${
+           parseInt((score / total) * 100) < 50
+             ? "Full-Stack Web Development Coding Bootcamp 0"
+             : parseInt((score / total) * 100) >= 75
+             ? "Full-Stack Web Development Coding Bootcamp 2"
+             : "Full-Stack Web Development Coding Bootcamp 1"
+         }</p> 
         <br>
         <p>Dreamtech lab team 🚀</p>
         <br>
@@ -80,15 +98,31 @@ const mailController = async (req, res) => {
         subject: "Your Quiz Result",
         html: `
         <center>
-        <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
+        <h2 style="color: green">Dear${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>Congrats, You have successfully completed the Dreamtech Academy quiz,</p> 
-        <p>Based on your result you have qualified for the ${
-          parseInt((score / total) * 100) >= 70
+        <p>We have received the final scores for the</p>
+        <p>Dreamtech Academy full stack developer exam</p>
+        <p>and, you earned a score of ${score}/${total}</p>
+        <p>Based on your score, we recommend that you begin</p>
+        <p>your journey with ${
+          parseInt((score / total) * 100) < 50
+            ? "Full-Stack Web Development Coding Bootcamp 0"
+            : parseInt((score / total) * 100) >= 75
             ? "Full-Stack Web Development Coding Bootcamp 2"
             : "Full-Stack Web Development Coding Bootcamp 1"
         }</p>
+        <p>One of our advisors will reach out to you</p>
+        <p>within the next five (5) business days</p>
+        <p>to further discuss this result.</p>
+        <p>We are hopeful that we can work</p>
+        <p>together toward your success.</p>
+        <br>
+        <p>You have the option to retake this exam on ${new Date(
+          new Date().getTime() + 7 * 24 * 60 * 60 * 1000
+        ).toLocaleDateString()}</p>
+        <p>We will discuss this option further in our meeting.</p>
+        <p>Thank you for your interest in studying with us.</p>
         <br>
         <p>Dreamtech lab team 🚀</p>
         <br>
