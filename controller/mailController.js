@@ -98,7 +98,7 @@ const mailController = async (req, res) => {
         subject: "Your Quiz Result",
         html: `
         <center>
-        <h2 style="color: green">Dear${name} 👩‍💻</h2>
+        <h2 style="color: green">Dear ${name} 👩‍💻</h2>
         </center>
         <center>
         <p>We have received the final scores for the</p>
