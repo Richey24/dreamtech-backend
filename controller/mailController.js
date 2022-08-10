@@ -39,7 +39,7 @@ const mailController = async (req, res) => {
     if (message) {
       await transporter.sendMail({
         //Sending Contact Mail To Admin
-        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
         to: "info@dreamtechlabs.net, info@dreamtechlabs.net",
         subject: "New Contact Message",
         html: `
@@ -58,18 +58,19 @@ const mailController = async (req, res) => {
     } else if (score) {
       await transporter.sendMail({
         //Sending Quiz Result Mail To Admin
-        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
-        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
+        from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
+        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
         subject: "New Student Quiz Result",
         html: `
         <center>
         <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>${name} have successfully completed the quiz for the Dreamtech Academy ${quizCourse},</p> 
+        <p>${name} have successfully completed the quiz for the Dreamtech Academy,</p> 
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
         <p>Email: ${email}</p>
+        <p>Phone Number: ${phoneNumber}</p>
         <p>HTML Score: ${htmlScore}/15</p>
         <p>Css Score: ${cssScore}/6</p>
         <p>Javascript Score: ${jsScore}/15</p>
@@ -81,7 +82,7 @@ const mailController = async (req, res) => {
              : "Full-Stack Web Development Coding Bootcamp 1"
          }</p> 
         <br>
-        <p>Dreamtech lab team 🚀</p>
+        <p>Dreamtech Team 🚀</p>
         <br>
         <i>Alone we might go faster</i>
         <i>together we go farther!</i>
@@ -92,19 +93,16 @@ const mailController = async (req, res) => {
       });
 
       await transporter.sendMail({
-        //Sending Quiz Result Mail To User
-        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        // Sending Quiz Result Mail To User
+        from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
         to: `${email}, ${email}`,
         subject: "Your Quiz Result",
         html: `
         <center>
         <h2 style="color: green">Dear ${name} 👩‍💻</h2>
         </center>
-        <center>
-        <p>We have received the final scores for the</p>
-        <p>Dreamtech Academy full stack developer exam</p>
-        <p>and, you earned a score of ${score}/${total}</p>
-        <p>Based on your score, we recommend that you begin</p>
+        <p>We have received the final scores for the Dreamtech Academy full stack developer exam</p>
+        <p>and, you earned a score of ${score}/${total} Based on your score, we recommend that you begin</p>
         <p>your journey with ${
           parseInt((score / total) * 100) < 50
             ? "Full-Stack Web Development Coding Bootcamp 0"
@@ -112,19 +110,16 @@ const mailController = async (req, res) => {
             ? "Full-Stack Web Development Coding Bootcamp 2"
             : "Full-Stack Web Development Coding Bootcamp 1"
         }</p>
-        <p>One of our advisors will reach out to you</p>
-        <p>within the next five (5) business days</p>
-        <p>to further discuss this result.</p>
-        <p>We are hopeful that we can work</p>
-        <p>together toward your success.</p>
+        <p>One of our advisors will reach out to you within the next five (5) business days to further discuss this result.</p>
+        <p>We are hopeful that we can work together toward your success.</p>
         <br>
         <p>You have the option to retake this exam on ${new Date(
           new Date().getTime() + 7 * 24 * 60 * 60 * 1000
         ).toLocaleDateString()}</p>
-        <p>We will discuss this option further in our meeting.</p>
-        <p>Thank you for your interest in studying with us.</p>
+        <p>We will discuss this option further in our meeting, Thank you for your interest in studying with us.</p>
         <br>
-        <p>Dreamtech lab team 🚀</p>
+        <center>
+        <p>Dreamtech Team 🚀</p>
         <br>
         <i>Alone we might go faster</i>
         <i>together we go farther!</i>
@@ -139,7 +134,7 @@ const mailController = async (req, res) => {
     } else {
       await transporter.sendMail({
         //Sending Register Mail To Admin
-        from: '"Dreamtech Labs Academy" <info@dreamtechlabs.net>',
+        from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
         to: "info@dreamtechlabs.net, info@dreamtechlabs.net",
         subject: "New Student Registration",
         html: `

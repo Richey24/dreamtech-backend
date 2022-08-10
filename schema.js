@@ -19,6 +19,10 @@ const User = mongoose.model(
       type: String,
       required: true,
     },
+    phoneNumber: {
+      type: String,
+      required: false,
+    },
     course: {
       type: String,
       required: false,
