@@ -59,14 +59,14 @@ const mailController = async (req, res) => {
       await transporter.sendMail({
         //Sending Quiz Result Mail To Admin
         from: '"Dreamtech Academy" <info@dreamtechlabs.net>',
-        to: `uahomorejoice@gmail.com, uahomorejoice@gmail.com`,
+        to: `info@dreamtechlabs.net, info@dreamtechlabs.net`,
         subject: "New Student Quiz Result",
         html: `
         <center>
         <h2 style="color: green">Quiz Result For ${name} 👩‍💻</h2>
         </center>
         <center>
-        <p>${name} have successfully completed the quiz for the Dreamtech Academy,</p> 
+        <p>${name} have successfully completed the quiz for the Dreamtech Academy ${quizCourse},</p> 
         <p>${name} answered ${score}/${total} questions correctly</p>   
         <p>Other Student Information</p>
         <p>Email: ${email}</p>
@@ -98,9 +98,7 @@ const mailController = async (req, res) => {
         to: `${email}, ${email}`,
         subject: "Your Quiz Result",
         html: `
-        <center>
         <h2 style="color: green">Dear ${name} 👩‍💻</h2>
-        </center>
         <p>We have received the final scores for the Dreamtech Academy full stack developer exam</p>
         <p>and, you earned a score of ${score}/${total} Based on your score, we recommend that you begin</p>
         <p>your journey with ${
